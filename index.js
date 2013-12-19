@@ -1,5 +1,15 @@
 var WebSocketServer = require('ws').Server,
-    wss = new WebSocketServer({port:process.env.PORT || 3000});
+    http = require('http');
+
+
+var server = http.createServer(function(req, res) {
+  res.writeHead(201);
+  res.end();
+});
+
+server.listen(process.env.PORT || 5000);
+
+var wss = new WebSocketServer({ server: server });
 
 wss.on('connection', function(ws) {
   ws.on('message', function(message) {
