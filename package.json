@@ -1,0 +1,22 @@
+{
+  "name": "sockecho",
+  "version": "0.0.0",
+  "description": "Echo Socket Server",
+  "main": "index.js",
+  "scripts": {
+    "test": "None"
+  },
+  "repository": {
+    "type": "git",
+    "url": "None"
+  },
+  "engines": {
+    "node": "0.10.x",
+    "npm": ">=1.2.x"
+  },
+  "author": "mdobs",
+  "license": "MIT",
+  "dependencies": {
+    "ws": "~0.4.31"
+  }
+}
