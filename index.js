@@ -16,4 +16,7 @@ wss.on('connection', function(ws) {
     console.log(message);
     ws.send("You sent:"+message);
   });
+  setInterval(function(){
+    ws.send(JSON.stringify({"command":"ping"}));
+  }, 3000);
 });
