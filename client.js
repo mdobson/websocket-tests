@@ -1,11 +1,24 @@
-var WebSocket = require('ws'),
-    ws = new WebSocket('ws://argosocktest.herokuapp.com/');
-
-ws.on('open', function() {
-  ws.send('Send some data to echo!');
-});
+var dgram = require('dgram');
+var message = new Buffer("Some bytes");
+var client = dgram.createSocket("udp4");
 
 
-ws.on('message', function(data, flags) {
-  console.log(arguments);
-});
+function sendPacket(done){
+
+  client.once("error", function (err) {
+    console.log("server error:\n" + err.stack);
+    client.close();
+  });
+
+  var buf = new Buffer([0x03,0x02,0xEE]);
+  client.send(buf, 0, buf.length, 3000, "192.168.1.13", function(err, bytes) {
+    client.once("message", function (msg, rinfo) {
+      console.log(msg);
+      client.close();
+    });
+  });
+}
+
+sendPacket();
+
+
