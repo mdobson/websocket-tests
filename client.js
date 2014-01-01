@@ -3,7 +3,7 @@ var message = new Buffer("Some bytes");
 var client = dgram.createSocket("udp4");
 
 
-module.exports = function sendPacket(done){
+module.exports = function(done){
 
   client.once("error", function (err) {
     console.log("server error:\n" + err.stack);
@@ -19,6 +19,5 @@ module.exports = function sendPacket(done){
   });
 }
 
-sendPacket();
 
 
